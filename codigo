@@ -1,0 +1,299 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>StyleAI - Moda Inteligente</title>
+	<style>
+		body {
+			font-family: 'Arial', sans-serif;
+			margin: 0;
+			padding: 0;
+			background-color: #f0f8ff;
+			color: #2c3e50;
+		}
+
+		.navbar {
+			background: #003366;
+			padding: 1rem;
+			display: flex;
+			justify-content: space-between;
+			align-items: center;
+		}
+
+		.navbar a {
+			color: white;
+			text-decoration: none;
+			margin: 0 15px;
+			font-weight: bold;
+		}
+
+		.hero {
+			background: url('https://via.placeholder.com/1500x600/003366/FFFFFF?text=Moda+Azul+e+Branco') no-repeat center;
+			background-size: cover;
+			height: 600px;
+			display: flex;
+			align-items: center;
+			justify-content: center;
+		}
+
+		.hero-content h1 {
+			color: white;
+			font-size: 3rem;
+			text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+		}
+
+		.features {
+			padding: 50px 20px;
+			display: grid;
+			grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+			gap: 2rem;
+		}
+
+		.feature-card {
+			background: white;
+			border-radius: 10px;
+			padding: 2rem;
+			box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+			text-align: center;
+		}
+
+		.feature-card img {
+			max-width: 100%;
+			height: auto;
+			border-radius: 8px;
+		}
+
+		.product-grid {
+			display: grid;
+			grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+			gap: 1.5rem;
+			padding: 20px;
+		}
+
+		.product-card {
+			background: white;
+			border-radius: 8px;
+			overflow: hidden;
+			box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+		}
+
+		.product-card img {
+			width: 100%;
+			height: 300px;
+			object-fit: cover;
+		}
+
+		.product-info {
+			padding: 1rem;
+		}
+
+		.product-info h3 {
+			margin: 0 0 0.5rem;
+			font-size: 1.2rem;
+		}
+
+		.size-filter {
+			padding: 20px;
+			background: #003366;
+			display: flex;
+			justify-content: center;
+			gap: 1rem;
+		}
+
+		.size-btn {
+			background: white;
+			border: none;
+			padding: 10px 20px;
+			border-radius: 20px;
+			cursor: pointer;
+			font-weight: bold;
+			transition: transform 0.2s;
+		}
+
+		.size-btn.active {
+			background: #007bff;
+			color: white;
+		}
+
+		.footer {
+			background: #003366;
+			color: white;
+			text-align: center;
+			padding: 2rem;
+			margin-top: 4rem;
+		}
+
+		.upload-box {
+			border: 2px dashed #007bff;
+			padding: 2rem;
+			border-radius: 10px;
+			text-align: center;
+			cursor: pointer;
+			margin: 2rem 0;
+		}
+
+		.suggestion-grid {
+			display: grid;
+			grid-template-columns: repeat(3, 1fr);
+			gap: 1.5rem;
+			padding: 20px;
+		}
+
+		.suggestion-item {
+			background: white;
+			padding: 1rem;
+			border-radius: 8px;
+		}
+
+		.virtual-tryon {
+			background: #e6f7ff;
+			padding: 2rem;
+			text-align: center;
+		}
+
+		@media (max-width: 768px) {
+			.hero-content h1 {
+				font-size: 2rem;
+			}
+
+			.features {
+				grid-template-columns: 1fr;
+			}
+		}
+	</style>
+</head>
+
+<body>
+	<nav class="navbar">
+		<a href="#">StyleAI</a>
+		<div>
+			<a href="#">Início</a>
+			<a href="#">Coleções</a>
+			<a href="#">Looks</a>
+			<a href="#">Contato</a>
+		</div>
+	</nav>
+
+	<div class="hero">
+		<div class="hero-content">
+			<h1>Descubra Seu Estilo</h1>
+		</div>
+	</div>
+
+	<div class="features">
+		<div class="feature-card">
+			<img src="https://via.placeholder.com/400x300/003366/FFFFFF?text=Decote+Nas+Costas" alt="Detalhe de decote nas costas">
+			<h2>Detalhes Únicos</h2>
+			<p>Decotes exclusivos em penas e costas</p>
+		</div>
+		<div class="feature-card">
+			<img src="https://via.placeholder.com/400x300/003366/FFFFFF?text=Tamanhos+P+ao+XXP" alt="Grade de tamanhos">
+			<h2>Tamanhos Inclusivos</h2>
+			<p>Do P ao XXL com ajustes personalizados</p>
+		</div>
+		<div class="feature-card">
+			<img src="https://via.placeholder.com/400x300/003366/FFFFFF?text=Azul+e+Branco" alt="Paleta de cores azul e branco">
+			<h2>Paleta Sofisticada</h2>
+			<p>Combinações modernas em azul e branco</p>
+		</div>
+	</div>
+
+	<div class="size-filter">
+		<button class="size-btn active" onclick="filterSize('P')">P</button>
+		<button class="size-btn" onclick="filterSize('M')">M</button>
+		<button class="size-btn" onclick="filterSize('G')">G</button>
+		<button class="size-btn" onclick="filterSize('XXP')">XXP</button>
+	</div>
+
+	<div class="product-grid" id="products">
+		<div class="product-card">
+			<img src="https://via.placeholder.com/300x400/003366/FFFFFF?text=Vestido+Azul+Decote" alt="Vestido azul com decote nas costas">
+			<div class="product-info">
+				<h3>Vestido Elegance</h3>
+				<p>R$ 299,90</p>
+				<a href="#" class="size-btn">Comprar</a>
+			</div>
+		</div>
+		<div class="product-card">
+			<img src="https://via.placeholder.com/300x400/FFFFFF/003366?text=Blusa+Branca+Penas" alt="Blusa branca com detalhes em penas">
+			<div class="product-info">
+				<h3>Blusa Chic</h3>
+				<p>R$ 159,90</p>
+				<a href="#" class="size-btn">Comprar</a>
+			</div>
+		</div>
+		<div class="product-card">
+			<img src="https://via.placeholder.com/300x400/003366/FFFFFF?text=Conjunto+Casual" alt="Conjunto azul e branco">
+			<div class="product-info">
+				<h3>Conjunto Urban</h3>
+				<p>R$ 399,90</p>
+				<a href="#" class="size-btn">Comprar</a>
+			</div>
+		</div>
+	</div>
+
+	<div class="upload-box" onclick="document.getElementById('photoInput').click()">
+		<input type="file" id="photoInput" accept="image/*" style="display: none;">
+		<h2>Enviar sua foto</h2>
+		<p>Arraste ou clique para enviar uma imagem e receber sugestões de looks</p>
+	</div>
+
+	<div class="suggestion-grid" id="suggestions">
+		<div class="suggestion-item">
+			<img src="https://via.placeholder.com/200x300/003366/FFFFFF?text=Look+Sugerido" alt="Sugestão de look">
+			<p>Look Casual</p>
+			<a href="#" class="size-btn">Ver produtos</a>
+		</div>
+		<div class="suggestion-item">
+			<img src="https://via.placeholder.com/200x300/FFFFFF/003366?text=Combinação+Moderna" alt="Sugestão de look">
+			<p>Estilo Urbano</p>
+			<a href="#" class="size-btn">Ver produtos</a>
+		</div>
+	</div>
+
+	<div class="virtual-tryon">
+		<h2>Experimente Virtualmente</h2>
+		<p>Use nossa tecnologia AR para ver como as peças ficam em você</p>
+		<button class="size-btn">Iniciar Try-On</button>
+	</div>
+
+	<footer class="footer">
+		<p>© 2024 StyleAI - Todos os direitos reservados</p>
+	</footer>
+
+	<script>
+		function filterSize(size) {
+            document.querySelectorAll('.size-btn').forEach(btn => btn.classList.remove('active'));
+            document.querySelector(`.size-btn[onclick*='${size}']`).classList.add('active');
+            // Aqui seria implementada a filtragem real de produtos
+        }
+
+        document.getElementById('photoInput').addEventListener('change', function(e) {
+            const file = e.target.files[0];
+            if (file) {
+                const reader = new FileReader();
+                reader.onload = function(e) {
+                    alert('Imagem carregada! Aqui viria a análise da IA...');
+                    // Simulação de resposta da IA
+                    document.getElementById('suggestions').innerHTML = `
+                        <div class="suggestion-item">
+                            <img src="${e.target.result}" alt="Sugestão baseada na sua foto">
+                            <p>Look Personalizado</p>
+                            <a href="#" class="size-btn">Ver produtos</a>
+                        </div>
+                        <div class="suggestion-item">
+                            <img src="https://via.placeholder.com/200x300/003366/FFFFFF?text=Look+Alternativo" alt="Sugestão alternativa">
+                            <p>Estilo Alternativo</p>
+                            <a href="#" class="size-btn">Ver produtos</a>
+                        </div>
+                    `;
+                }
+                reader.readAsDataURL(file);
+            }
+        });
+	</script>
+</body>
+
+</html>
